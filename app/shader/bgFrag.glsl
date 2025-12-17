@@ -1,16 +1,10 @@
 #define ANIM_SPEED 0.05
 #define PIXEL_COUNT 480.0
 #define BUMP_FACTOR 0.05
-
-#define BASE_COLOR vec3(0.5, 0.5, 0.5)
-
+ 
 uniform float time;
 uniform vec3 res;
-uniform float randomVals[7];
-
-float rand(vec2 pt) {
-    return fract(sin(dot(pt.xy, vec2(12.9898, 78.233))) * 43758.5453);
-}
+uniform float yOffset;
 
 vec3 permute(vec3 pt) {
     return mod(((pt*34.0)+1.0)*pt, 289.0);
@@ -39,7 +33,7 @@ float simplex(vec2 pt) {
     return 130.0 * dot(m, g);
 }
 
-vec2 warp(vec2 pt, vec2 mid) {
+vec2 warp(vec2 pt) {
     vec2 o;
     float S = 0.0;
     
@@ -54,8 +48,8 @@ vec2 warp(vec2 pt, vec2 mid) {
     return mod(o, 2.0) - 1.0;
 }
 
-float bump(vec2 pt, vec2 mid) {
-    return length(warp(pt, mid))*0.7071;
+float bump(vec2 pt) {
+    return length(warp(pt))*0.7071;
 }
 
 vec3 smoothFract(vec3 x) {
@@ -71,11 +65,10 @@ void main() {
     vec3 lightPos   = vec3(0.0, 0.0, -1.0);
     vec3 normal     = vec3(0.0, 0.0, -1.0);
     vec2 epsilon    = vec2(4.0/res.y, 0.0);
-    vec2 mid        = (res.xy/length(res.xy))/2.0;
 
-    float f  = bump(surfacePos.xy, mid);
-    float fx = (bump(surfacePos.xy - epsilon.xy, mid) - f)/epsilon.x;
-    float fy = (bump(surfacePos.xy - epsilon.yx, mid) - f)/epsilon.x;
+    float f  = bump(surfacePos.xy + vec2(0.0, yOffset));
+    float fx = (bump(surfacePos.xy - epsilon.xy + vec2(0.0, yOffset)) - f)/epsilon.x;
+    float fy = (bump(surfacePos.xy - epsilon.yx + vec2(0.0, yOffset)) - f)/epsilon.x;
 
     normal = normalize(normal + vec3(fx, fy, 0.0)*BUMP_FACTOR);
     
@@ -84,7 +77,7 @@ void main() {
     lightDir /= lightDist;
     float diffuse  = max(dot(normal, lightDir), 0.0);
     float specular = pow(max(dot(reflect(-lightDir, normal), -rayOrigin), 0.0), 12.0);
-    vec3 texCol    = smoothFract(warp(surfacePos.xy, mid).xyy)*0.1 + 0.2;
+    vec3 texCol    = smoothFract(warp(surfacePos.xy + vec2(0.0, yOffset)).xyy)*0.1 + 0.2;
     diffuse = pow(diffuse, 4.0) * 0.667 + pow(diffuse, 8.0)*0.333;
 
     vec3 col = (texCol*(diffuse*vec3(1, .97, .92)*2.0 + 0.5) + vec3(1.0, 0.6, 0.2)*specular*2.0);

@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import './globals.css';
 import * as THREE from 'three';
 import frag from './shader/bgFrag.glsl?raw';
 import { Timestamp } from 'next/dist/server/lib/cache-handlers/types';
 
-export const Scene = () => {
+export function Scene() {
     const containerRef = useRef<HTMLDivElement>(null);
     useEffect(() => { if (typeof window !== undefined) {
         const scene = new THREE.Scene();
@@ -27,7 +28,7 @@ export const Scene = () => {
                     document.documentElement.clientHeight,
                     1.0
                 )}, 
-                randomVals: { value: Array.from({ length: 7 }, () => Math.random()) },
+                yOffset: { value: -window.scrollY * 0.001 },
             },
 
         });
@@ -46,6 +47,10 @@ export const Scene = () => {
             mat.uniforms.res.value.set(w, h, 1.0);
         }
 
+        function scroll() {
+            mat.uniforms.yOffset.value = -window.scrollY * 0.001;
+        }
+
         let then: Timestamp = 0;
         function renderScene(time: Timestamp) {
             const delta = (time-then) * 0.001;
@@ -58,7 +63,11 @@ export const Scene = () => {
         renderScene(0);
 
         window.addEventListener('resize', resize);
-        return () => window.removeEventListener('resize', resize);
+        window.addEventListener('scroll', scroll);
+        return () => {
+            window.removeEventListener('resize', resize);
+            window.removeEventListener('scroll', scroll);
+        };
     }}, [])
-    return <div ref={containerRef}></div>;
+    return <div ref={containerRef} className="fixed"></div>;
 }
