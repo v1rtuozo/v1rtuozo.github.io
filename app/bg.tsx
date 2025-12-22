@@ -1,12 +1,11 @@
 'use client'
 
 import { useRef, useEffect } from 'react';
-import './globals.css';
 import * as THREE from 'three';
 import frag from './shader/bgFrag.glsl?raw';
 import { Timestamp } from 'next/dist/server/lib/cache-handlers/types';
 
-export function Scene() {
+export default function Scene() {
     const containerRef = useRef<HTMLDivElement>(null);
     useEffect(() => { if (typeof window !== undefined) {
         const scene = new THREE.Scene();
@@ -28,7 +27,12 @@ export function Scene() {
                     document.documentElement.clientHeight,
                     1.0
                 )}, 
-                yOffset: { value: -window.scrollY * 0.001 },
+                defaultCol: { value: new THREE.Vector3(
+                    0.00000,
+                    0.03501,
+                    0.11233,
+                )},
+                yOffset: { value: -window.scrollY * 0.5 / document.documentElement.clientHeight },
             },
 
         });
@@ -48,7 +52,7 @@ export function Scene() {
         }
 
         function scroll() {
-            mat.uniforms.yOffset.value = -window.scrollY * 0.001;
+            mat.uniforms.yOffset.value = -window.scrollY * 0.5 / document.documentElement.clientHeight;
         }
 
         let then: Timestamp = 0;
@@ -69,5 +73,9 @@ export function Scene() {
             window.removeEventListener('scroll', scroll);
         };
     }}, [])
-    return <div ref={containerRef} className="fixed"></div>;
+    return (
+    <div ref={containerRef} className="fixed z-[-1]" suppressHydrationWarning={true}>
+        
+    </div>
+    );
 }

@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-carbon-black-500: #222222;
+  --color-bone-white-500: #e7decd;
+  --color-cornflower-blue-500: #7599fa;
+  --color-deep-blue-500: #374058;
+
+  @keyframes pageScroll {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+  
+  --animate-scroll: pageScroll 1ms ease-in-out;
 }
 
 html {
@@ -11,9 +25,6 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -23,3 +34,5 @@ canvas {
   padding: 0;
   display: block;
 }
+
+

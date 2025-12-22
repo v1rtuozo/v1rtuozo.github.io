@@ -4,12 +4,14 @@ import { TITLE, SUBTITLE, BODY } from './layout';
 export default function Page() {
   return (
     <>
-      <div className="contianer w-full absolute">
-        <p className={`flex ${SUBTITLE.className} text-5xl tracking-wider justify-center`} >hello, i&apos;m</p>
-        <div></div>
-        <p className={`flex ${TITLE.className} text-5xl tracking-tighter justify-center`}>ryan zucker</p>
+      <div className="box-border h-[100vh] relative justify-items-center">
+        <div className="text-bone-white-500 relative top-[calc(50vh-3rem)] h-100%">
+          <h2 className={`${SUBTITLE.className} text-2xl md:text-3xl tracking-tighter`}>hello, i&apos;m</h2>
+          <div></div>
+          <h1 className={`${TITLE.className} text-2xl md:text-6xl tracking-tighter`}>ryan zucker</h1>
+        </div>
       </div>
-      <div className="top-90000 absolute">t</div>
+      <div className="absolute top-90000">x</div>
     </>
   );
 }

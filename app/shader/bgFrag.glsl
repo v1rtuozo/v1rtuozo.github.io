@@ -1,10 +1,11 @@
-#define ANIM_SPEED 0.05
+#define ANIM_SPEED 0.025
 #define PIXEL_COUNT 480.0
-#define BUMP_FACTOR 0.05
+#define BUMP_FACTOR 0.01
  
 uniform float time;
 uniform vec3 res;
 uniform float yOffset;
+uniform vec3 defaultCol;
 
 vec3 permute(vec3 pt) {
     return mod(((pt*34.0)+1.0)*pt, 289.0);
@@ -62,9 +63,9 @@ void main() {
     uv = floor(uv * PIXEL_COUNT) / PIXEL_COUNT;
     vec3 surfacePos = vec3(uv, 0.0);
     vec3 rayOrigin  = normalize(vec3(uv, 1.0));
-    vec3 lightPos   = vec3(0.0, 0.0, -1.0);
+    vec3 lightPos   = vec3(0.0, -1.0, -1.0);
     vec3 normal     = vec3(0.0, 0.0, -1.0);
-    vec2 epsilon    = vec2(4.0/res.y, 0.0);
+    vec2 epsilon    = vec2(5.0/res.y, 0.0);
 
     float f  = bump(surfacePos.xy + vec2(0.0, yOffset));
     float fx = (bump(surfacePos.xy - epsilon.xy + vec2(0.0, yOffset)) - f)/epsilon.x;
@@ -76,10 +77,10 @@ void main() {
     float lightDist = max(length(lightDir), 0.0001);
     lightDir /= lightDist;
     float diffuse  = max(dot(normal, lightDir), 0.0);
-    float specular = pow(max(dot(reflect(-lightDir, normal), -rayOrigin), 0.0), 12.0);
-    vec3 texCol    = smoothFract(warp(surfacePos.xy + vec2(0.0, yOffset)).xyy)*0.1 + 0.2;
-    diffuse = pow(diffuse, 4.0) * 0.667 + pow(diffuse, 8.0)*0.333;
+    float specular = pow(max(dot(reflect(-lightDir, normal), -rayOrigin), 0.0), 8.0);
+    vec3 texCol    = smoothFract(warp(surfacePos.xy + vec2(0.0, yOffset)).xyy) * 0.1 + 0.2;
+    diffuse = pow(diffuse, 2.0) * 0.667 + pow(diffuse, 8.0) * 0.333;
 
-    vec3 col = (texCol*(diffuse*vec3(1, .97, .92)*2.0 + 0.5) + vec3(1.0, 0.6, 0.2)*specular*2.0);
+    vec3 col = texCol*(diffuse*defaultCol*16.0 + 0.5) + vec3(0.2, 0.6, 1.0)*specular*2.0;
     gl_FragColor = vec4(sqrt(clamp(col, 0.0, 1.0)), 1.0);
 }
