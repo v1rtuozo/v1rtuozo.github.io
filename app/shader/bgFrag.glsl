@@ -1,6 +1,6 @@
 #define ANIM_SPEED 0.025
 #define PIXEL_COUNT 480.0
-#define BUMP_FACTOR 0.01
+#define BUMP_FACTOR 0.001
  
 uniform float time;
 uniform vec3 res;

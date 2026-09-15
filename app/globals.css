@@ -2,9 +2,12 @@
 
 @theme {
   --color-carbon-black-500: #222222;
+  --color-carbon-black-400: #2e2e2e;
   --color-bone-white-500: #e7decd;
   --color-cornflower-blue-500: #7599fa;
+  --color-deep-blue-600: #323a4f;
   --color-deep-blue-500: #374058;
+  --color-deep-blue-400: #4b5369;
 
   @keyframes pageScroll {
     from {
@@ -15,13 +18,14 @@
       opacity: 1;
     }
   }
-  
+
   --animate-scroll: pageScroll 1ms ease-in-out;
 }
 
 html {
   margin: 0;
   padding: 0;
+  scroll-snap-type: none;
 }
 
 body {
@@ -35,4 +39,189 @@ canvas {
   display: block;
 }
 
+.mono-box {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 
+              0 -20px 25px -5px rgb(0 0 0 / 0.3), 
+              0 -8px 10px -6px rgb(0 0 0 / 0.3);
+}
+
+.mono-header {
+  box-shadow: 0 20px 15px -5px rgb(0 0 0 / 0.2), 
+              0 8px 5px -6px rgb(0 0 0 / 0.2), 
+              0 -20px 15px -5px rgb(0 0 0 / 0.2), 
+              0 -8px 5px -6px rgb(0 0 0 / 0.2);
+}
+
+.mono-link {
+  background: linear-gradient(to left top, var(--color-deep-blue-500), var(--color-deep-blue-400));
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 100ms ease;
+  box-shadow: 0 20px 15px -5px rgb(0 0 0 / 0.2), 
+              0 8px 5px -6px rgb(0 0 0 / 0.2), 
+              0 -20px 15px -5px rgb(0 0 0 / 0.2), 
+              0 -8px 5px -6px rgb(0 0 0 / 0.2);
+}
+
+.mono-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left top, var(--color-deep-blue-500), var(--color-deep-blue-600));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.mono-link > img {
+  position: relative;
+  z-index: 1;
+}
+
+.mono-link:hover {
+  box-shadow: none;
+}
+
+.mono-link:hover::before {
+  opacity: 1;
+}
+
+.list-link {
+  opacity: 0;
+  transform: translateX(-15pt);
+  animation-delay: var(--link-animation-delay, 0ms);
+}
+
+.list-link-visible {
+  animation: listLinkEnter 300ms ease both;
+}
+
+.list-link-exit {
+  animation: listLinkExit 300ms ease both;
+}
+
+@keyframes listLinkEnter {
+  from {
+    opacity: 0;
+    transform: translateX(-15pt) scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes listLinkExit {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-15pt) scale(0.8);
+  }
+}
+
+.list-stage {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  height: var(--item-height);
+  min-height: var(--item-height);
+}
+html.list-snapping {
+  scroll-snap-type: y mandatory;
+}
+
+[data-list-item] {
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: left center;
+  animation: listItemCarousel linear both;
+  animation-timeline: scroll(root block);
+  animation-range: calc(100vh + (var(--item-index) - 1) * var(--item-height)) calc(100vh + (var(--item-index) + 1) * var(--item-height));
+}
+
+[data-list-first] {
+  animation-name: firstListItemCarousel;
+}
+
+[data-list-last] {
+  animation-name: lastListItemCarousel;
+}
+
+@keyframes listItemCarousel {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(calc((var(--item-height) / 2) + 60pt));
+  }
+
+  25% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(60pt);
+  }
+
+  
+  50% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  75% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-60pt);
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(calc(((var(--item-height) / 2) + 60pt) * -1));
+  }
+}
+
+@keyframes firstListItemCarousel {
+  0%,
+  50% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  75% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-60pt);
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(calc(((var(--item-height)) + 60pt) * -1));
+  }
+}
+
+@keyframes lastListItemCarousel {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(calc((var(--item-height)) + 60pt));
+  }
+
+  25% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(60pt);
+  }
+
+  50%, 100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
 

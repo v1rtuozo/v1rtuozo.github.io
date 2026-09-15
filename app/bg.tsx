@@ -52,7 +52,7 @@ export default function Scene() {
         }
 
         function scroll() {
-            mat.uniforms.yOffset.value = -window.scrollY * 0.5 / document.documentElement.clientHeight;
+            mat.uniforms.yOffset.value = -window.scrollY * 0.35 / document.documentElement.clientHeight;
         }
 
         let then: Timestamp = 0;

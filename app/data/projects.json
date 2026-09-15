@@ -1,0 +1,59 @@
+{
+    "title": "Projects",
+    "items": [
+        {
+            "title": "FPGA-Controlled Spider Robot",
+            "subtitle": "EECE 2160 Design Project",
+            "description": "Built with Three, Next.js, and love :)",
+            "links": [
+                {
+                    "title": "GitHub",
+                    "url": "a"
+                }
+            ],
+            "image": ""
+        },
+        {
+            "title": "GPS-Enabled Livestock Eartag",
+            "subtitle": "GE 1502 Final Project",
+            "description": "Built with Three, Next.js, and love :)",
+            "links": [
+                {
+                    "title": "Onshape",
+                    "url": "b"
+                }
+            ],
+            "image": ""
+        },
+        {
+            "title": "CIFAR-10 Image Classifier",
+            "subtitle": "EECE 2140 Final Project",
+            "description": "Built with Three, Next.js, and love :)",
+            "links": [
+                {
+                    "title": "GitHub",
+                    "url": "c"
+                }
+            ],
+            "image": ""
+        },
+        {
+            "title": "Bolt Renderer",
+            "subtitle": "WebGL2 TypeScript Renderer",
+            "description": "Built with Three, Next.js, and love :)",
+            "links": [
+                {
+                    "title": "GitHub",
+                    "url": "d"
+                }
+            ],
+            "image": ""
+        },
+        {
+            "title": "This Website",
+            "subtitle": "Personal Portfolio",
+            "description": "Built with Three, Next.js, and love :)",
+            "image": ""
+        }
+    ]
+}
