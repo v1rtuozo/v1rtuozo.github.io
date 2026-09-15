@@ -9,6 +9,7 @@ import dotFull from './images/dot-full.svg';
 import dotHollow from './images/dot-hollow.svg';
 import cadModel from './images/cad-model.svg';
 import github from './images/github.svg';
+import link from './images/link.svg';
 
 export const TITLE = BBH_Sans_Bartle({
   weight: '400',
@@ -34,6 +35,7 @@ export default function RootLayout({
   preload(dotHollow.src, { as: 'image' });
   preload(cadModel.src, { as: 'image' });
   preload(github.src, { as: 'image' });
+  preload(link.src, { as: 'image' });
 
   return (
     <html lang="en">

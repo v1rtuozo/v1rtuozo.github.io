@@ -5,6 +5,7 @@ import dotHollow from './images/dot-hollow.svg';
 import dotFull from './images/dot-full.svg';
 import cadModel from './images/cad-model.svg';
 import github from './images/github.svg';
+import linkImg from './images/link.svg';
 import './globals.css'
 import { TITLE, SUBTITLE, BODY } from './layout';
 import { CSSProperties, ReactElement, useEffect, useRef, useState } from 'react';
@@ -30,8 +31,8 @@ export interface ModularListData {
 
 const ITEM_HEIGHT = 65; // in vh
 const LINK_ANIMATION_DURATION = 300;
-const LINK_ANIMATION_DELAY = 60;
-const LINK_SETTLE_DELAY = 100;
+const LINK_ANIMATION_DELAY = 100;
+const LINK_SETTLE_DELAY = 25;
 
 const getLinkTransitionDuration = (linkCount: number) =>
     LINK_ANIMATION_DURATION + Math.max(0, linkCount - 1) * LINK_ANIMATION_DELAY;
@@ -133,6 +134,7 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
         let linkImage = null;
         if (link.title == 'GitHub') linkImage = github;
         else if (link.title == 'Onshape') linkImage = cadModel;
+        else linkImage = linkImg;
         return (
             <MonoLink key={`${boxTitle}-${linkIndex}-link-${i}`} img={linkImage} link={link.url} altText={link.title} size={40} animationDelay={i * LINK_ANIMATION_DELAY} style={`list-link ${linkAnimationClass}`} />
         );

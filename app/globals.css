@@ -89,15 +89,14 @@ canvas {
 .list-link {
   opacity: 0;
   transform: translateX(-15pt);
-  animation-delay: var(--link-animation-delay, 0ms);
 }
 
 .list-link-visible {
-  animation: listLinkEnter 300ms ease both;
+  animation: listLinkEnter 300ms ease var(--link-animation-delay, 0ms) both;
 }
 
 .list-link-exit {
-  animation: listLinkExit 300ms ease both;
+  animation: listLinkExit 300ms ease var(--link-animation-delay, 0ms) both;
 }
 
 @keyframes listLinkEnter {
