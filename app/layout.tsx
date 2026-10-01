@@ -30,11 +30,6 @@ export const BODY = Host_Grotesk({
   subsets: ['latin']
 });
 
-export const metadata = {
-  title: 'ryan zucker',
-  description: 'My semi-professional portfolio website.',
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
