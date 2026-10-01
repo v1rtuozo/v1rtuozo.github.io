@@ -24,11 +24,16 @@ export const SUBTITLE = Google_Sans_Code({
   weight: '300',
   subsets: ['latin'],
   style: 'italic',
-})
+});
 
 export const BODY = Host_Grotesk({
   subsets: ['latin']
-})
+});
+
+export const metadata = {
+  title: 'ryan zucker',
+  description: 'My semi-professional portfolio website.',
+}
 
 export default function RootLayout({
   children,
