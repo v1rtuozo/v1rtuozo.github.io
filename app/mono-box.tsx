@@ -9,8 +9,8 @@ export default function MonoBox(props: { children: ReactElement; width: string; 
 
     return (
         <>
-            <div className={`0 bg-linear-to-tl from-carbon-black-500 to-carbon-black-400 ${width} ${height} ${boxStyle} rounded-[45pt]`}>
-                <div className={`mono-box bg-linear-to-tl from-carbon-black-500 to-carbon-black-400 absolute p-[15pt] w-[calc(100%-30pt)] h-[calc(100%-30pt)] top-[15pt] left-[15pt] rounded-[30pt] ${boxInnerStyle}`}>
+            <div className={`bg-linear-to-tl from-carbon-black-500 to-carbon-black-400 ${width} ${height} ${boxStyle} p-[15pt] rounded-[45pt]`}>
+                <div className={`mono-box bg-linear-to-tl from-carbon-black-500 to-carbon-black-400 relative p-[15pt] w-full h-full rounded-[30pt] ${boxInnerStyle}`}>
                     {props.children}
                 </div>
             </div>

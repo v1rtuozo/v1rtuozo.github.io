@@ -1,0 +1,26 @@
+{
+    "title": "Experience",
+    "items": [
+        {
+            "title": "Software Engineering Co-op",
+            "subtitle": "Jan. 2026 - Jun. 2026 @ Captura",
+            "description": "\tMy first Northeastern Co-op experience. My supervisor, Chris, gave me three major tasks across my six months there:\n\t- Migration of our metrics and models from Tableau to \n\t  Metabase\n\t\t- Using SQL and Databricks\n\t- Researching improvements to anti-theft technology\n\t\t- I developed a dynamic watermark with up to 30% \n\t\t  increased resilience against AI removal tools\n\t\t- I also created a fully-integrated development and \n\t\t  previewing pipeline for documenting and testing \n\t\t  progress\n\t- Made major contributions to the June 2026 Workflow \n\t  and Shop releases, specifically in the product designer\n\t\t- Grid lines and margin alignment tools\n\t\t- Gradient support for backgrounds\n\t\t- In-editor previewing of designs with populated data \n\t\t  (names, images, barcodes, etc.)",
+            "links": [],
+            "image": ""
+        },
+        {
+            "title": "IT Shadow Week",
+            "subtitle": "May. 2024 @ Monotype",
+            "description": "\tMy senior shadow week. I shadowed a few IT people at Monotype, mostly watching and learning how they conducted day-to-day activities. During that week, however, I:\n\t- Prepared 20+ laptops for secure data disposal\n\t- Fully organized in-office tape drives, labelling outdated ones \n\t  for archival\n\t- Updated employee technology records to reflect the \n\t  company-owned devices each individual had",
+            "links": [],
+            "image": ""
+        },
+        {
+            "title": "Teaching Assistant",
+            "subtitle": "Sep. 2023 - May. 2024 @ New England Academy",
+            "description": "\tThis was one of my National Honor Society contributions to my high school. I observed two classes: Chemistry and Pre-Calculus, and was mainly there to help answer questions about classwork and to provide explanations of concepts if necessary. Both teachers I TA'd for told me they were impressed by my ability to explain things in approachable terms. In chemistry, some students even told me that my presence was one of the main reasons they passed the class.",
+            "links": [],
+            "image": ""
+        }
+    ]
+}

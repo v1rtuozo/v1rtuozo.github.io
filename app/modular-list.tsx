@@ -12,6 +12,7 @@ import { CSSProperties, ReactElement, useEffect, useRef, useState } from 'react'
 import MonoBox from './mono-box';
 import MonoHeader from './mono-header';
 import MonoLink from './mono-link';
+import { clearSnapOwner, updateSnapOwner } from './snap-state';
 
 export interface ModularListItem {
     title: string;
@@ -37,10 +38,13 @@ const LINK_SETTLE_DELAY = 25;
 const getLinkTransitionDuration = (linkCount: number) =>
     LINK_ANIMATION_DURATION + Math.max(0, linkCount - 1) * LINK_ANIMATION_DELAY;
 
-export default function ModularList(props: { data: ModularListData; boxExtraStyle?: string; }) {
+export default function ModularList(props: { data: ModularListData; boxExtraStyle?: string; align?: 'left' | 'middle' | 'right'; listId?: string }) {
     const { data, boxExtraStyle } = props;
     const boxTitle = data.title;
-    const items = data.items;   
+    const items = data.items;
+    const align = props.align ? props.align : 'left';
+    const listId = props.listId ?? boxTitle ?? 'modular-list';
+    const listContainerRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(0);
     const [settledIndex, setSettledIndex] = useState(0);
@@ -59,19 +63,20 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
         const onScroll = () => {
             const firstTarget = documentTop(stages[0]);
             const lastTarget = documentTop(stages[stages.length - 1]);
+            listContainerRef.current?.style.setProperty('--list-start', `${firstTarget}px`);
             const isInsideList = window.scrollY >= firstTarget && window.scrollY <= lastTarget;
-            document.documentElement.classList.toggle('list-snapping', isInsideList);
 
             if (isInsideList) {
                 const nextIndex = Math.min(
                     items.length - 1,
                     Math.max(0, Math.round((window.scrollY - firstTarget) / (window.innerHeight * ITEM_HEIGHT / 100))),
                 );
-                setActiveIndex((currentIndex) => currentIndex === nextIndex ? currentIndex : nextIndex);
-                if (nextIndex === linkIndexRef.current && linkExitStartedAtRef.current !== null) {
+                updateSnapOwner(listId, nextIndex);
+                setActiveIndex((currentIndex) => currentIndex == nextIndex ? currentIndex : nextIndex);
+                if (nextIndex == linkIndexRef.current && linkExitStartedAtRef.current !== null) {
                     linkExitStartedAtRef.current = null;
                     setIsLinkExiting(false);
-                } else if (nextIndex !== linkIndexRef.current && linkExitStartedAtRef.current === null) {
+                } else if (nextIndex !== linkIndexRef.current && linkExitStartedAtRef.current == null) {
                     linkExitStartedAtRef.current = Date.now();
                     setIsLinkExiting(true);
                 }
@@ -80,6 +85,8 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
                     () => setSettledIndex(nextIndex),
                     LINK_SETTLE_DELAY,
                 );
+            } else if (listId) {
+                clearSnapOwner(listId);
             }
         };
 
@@ -90,12 +97,12 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
             window.removeEventListener('scroll', onScroll);
             window.removeEventListener('resize', onScroll);
             if (settleTimeoutRef.current) clearTimeout(settleTimeoutRef.current);
-            document.documentElement.classList.remove('list-snapping');
+            clearSnapOwner(listId);
         };
-    }, [items]);
+    }, [items, listId]);
 
     useEffect(() => {
-        if (settledIndex === linkIndex) return;
+        if (settledIndex == linkIndex) return;
 
         const oldLinkCount = items[linkIndex]?.links?.length ?? 0;
         const transitionDuration = getLinkTransitionDuration(oldLinkCount);
@@ -113,16 +120,18 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
         };
     }, [items, settledIndex, linkIndex]);
 
+    const boxAlignClass = align == 'left' ? 'ml-[15pt] mr-auto' : align == 'middle' ? 'mx-auto' : 'ml-auto mr-[15pt]';
+
     const listJSX: ReactElement[] = [];
     items.forEach((item, i) => {
         const subtitle = item.subtitle ? <h3 className={`${SUBTITLE.className} text-cornflower-blue-500`}>{item.subtitle}</h3> : null;
         const img = item.image ? <Image src={item.image} alt={item.title} width={320} height={180} /> : null;
         listJSX.push((
-            <div key={`${boxTitle}-item-${i}`} id={`${boxTitle}-${i}`} data-list-item={true} data-list-first={i === 0 || undefined} data-list-last={i === items.length - 1 || undefined} className="carousel-item absolute pt-[15pt] box-border" style={{ '--item-index': i } as CSSProperties}>
+            <div key={`${boxTitle}-item-${i}`} id={`${boxTitle}-${i}`} data-list-item={true} data-list-first={i == 0 || undefined} data-list-last={i == items.length - 1 || undefined} className="carousel-item absolute pt-[15pt] w-[calc(100%-56pt)]" style={{ '--item-index': i } as CSSProperties}>
                 <div>
                     <h2 className={`${SUBTITLE.className} text-bone-white-500`}>{item.title}</h2>
                     {subtitle}
-                    <p className={`${BODY.className} text-bone-white-500`}>{item.description}</p>
+                    <p className={`${BODY.className} text-bone-white-500 whitespace-pre-wrap text-justify w-[475px]`}>{item.description}</p>
                     {img}
                 </div>
             </div>
@@ -151,10 +160,10 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
 
     return (
     <>
-        <div id={boxTitle} style={{ '--item-height': `${ITEM_HEIGHT}vh`, height: `calc(100vh + ${items.length * ITEM_HEIGHT}vh)` } as CSSProperties} className="relative overflow-visible">
-            <MonoBox width={'w-[calc(67vw-30pt)]'} height={'h-[calc(100vh-30pt)]'} boxStyle={`container sticky top-[15pt] left-[15pt] z-[1] overflow-visible ${boxExtraStyle}`} boxInnerStyle="overflow-hidden">
+        <div ref={listContainerRef} id={boxTitle} style={{ '--item-height': `${ITEM_HEIGHT}vh`, '--list-start': '0px', height: `calc(100vh + ${items.length * ITEM_HEIGHT}vh)` } as CSSProperties} className="relative overflow-visible w-full max-w-full">
+            <MonoBox width={'w-[calc(67%-30pt)]'} height={'h-[calc(100vh-30pt)]'} boxStyle={`sticky top-[15pt] ${boxAlignClass} z-[1] min-w-[575px] overflow-visible ${boxExtraStyle}`} boxInnerStyle="overflow-hidden">
                 <div className={`w-full h-full`}>
-                    <div className="flex items-center gap-[7.5pt] flex-wrap">
+                    <div className="flex items-center gap-[7.5pt] flex-wrap">   
                         {title}
                         <div className="list-link-rail flex items-center gap-[7.5pt] flex-wrap">
                             {listLinkJSX}
@@ -163,7 +172,7 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
                     {listJSX}
                     <div aria-hidden="true" className="absolute right-[15pt] top-1/2 translate-y-[-50%] w-fit">
                         {items.map((_, i) => (
-                            <Image key={`dot${i}`} id={`dot${i}`} data-list-dot src={i === activeIndex ? dotFull : dotHollow} alt="" width={16} height={16} className={i === activeIndex ? 'opacity-100 pt-[7.5pt] pb-[7.5pt]' : 'opacity-25 pt-[7.5pt] pb-[7.5pt]'}/>
+                            <Image key={`dot${i}`} id={`dot${i}`} data-list-dot src={i == activeIndex ? dotFull : dotHollow} alt="" width={16} height={16} className={i == activeIndex ? 'opacity-100 pt-[7.5pt] pb-[7.5pt]' : 'opacity-25 pt-[7.5pt] pb-[7.5pt]'}/>
                         ))}
                     </div>
                 </div>

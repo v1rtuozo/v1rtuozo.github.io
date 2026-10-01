@@ -1,6 +1,6 @@
-#define ANIM_SPEED 0.025
+#define ANIM_SPEED 0.0125
 #define PIXEL_COUNT 480.0
-#define BUMP_FACTOR 0.001
+#define BUMP_FACTOR 0.1    
  
 uniform float time;
 uniform vec3 res;
@@ -12,7 +12,7 @@ vec3 permute(vec3 pt) {
 }
 
 float simplex(vec2 pt) {
-    const vec4 C = vec4(0.211324865405187, 0.366025403784439,-0.577350269189626, 0.024390243902439);
+    const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
     vec2 i       = floor(pt + dot(pt, C.yy));
     vec2 x0      = pt - i + dot(i, C.xx);
     vec2 i1      = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
@@ -31,7 +31,7 @@ float simplex(vec2 pt) {
     vec3 g;
     g.x = a0.x * x0.x + h.x * x0.y;
     g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-    return 130.0 * dot(m, g);
+    return 150.0 * dot(m, g);
 }
 
 vec2 warp(vec2 pt) {
@@ -63,8 +63,8 @@ void main() {
     uv = floor(uv * PIXEL_COUNT) / PIXEL_COUNT;
     vec3 surfacePos = vec3(uv, 0.0);
     vec3 rayOrigin  = normalize(vec3(uv, 1.0));
-    vec3 lightPos   = vec3(0.0, -1.0, -1.0);
-    vec3 normal     = vec3(0.0, 0.0, -1.0);
+    vec3 lightPos   = vec3(0.0, 0.0, 1.0);
+    vec3 normal     = vec3(0.0, 0.0, 1.0);
     vec2 epsilon    = vec2(5.0/res.y, 0.0);
 
     float f  = bump(surfacePos.xy + vec2(0.0, yOffset));
@@ -81,6 +81,6 @@ void main() {
     vec3 texCol    = smoothFract(warp(surfacePos.xy + vec2(0.0, yOffset)).xyy) * 0.1 + 0.2;
     diffuse = pow(diffuse, 2.0) * 0.667 + pow(diffuse, 8.0) * 0.333;
 
-    vec3 col = texCol*(diffuse*defaultCol*16.0 + 0.5) + vec3(0.2, 0.6, 1.0)*specular*2.0;
+    vec3 col = texCol*(diffuse*defaultCol*16.0 + 0.5) + vec3(0.2, 0.4, 1.0)*specular*2.0;
     gl_FragColor = vec4(sqrt(clamp(col, 0.0, 1.0)), 1.0);
 }

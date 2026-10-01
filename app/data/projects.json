@@ -2,13 +2,13 @@
     "title": "Projects",
     "items": [
         {
-            "title": "FPGA-Controlled Spider Robot",
-            "subtitle": "EECE 2160 Design Project",
-            "description": "Built with Three, Next.js, and love :)",
+            "title": "Bolt Renderer",
+            "subtitle": "TypeSript WebGL 2 Renderer",
+            "description": "\tBuilding an object-oriented WebGL 2 renderer using TypeScript, from scratch, with no external packages. I'm currently working on some refactors to the old content, since I've learned a lot more about good code standards and the rendering pipeline overall.\n\nCurrent Support:\n\t- Canvas creation and rendering context setup\n\t- Custom vertex and fragment shader definition\n\t- Object-oriented color and vector support, with \n\t   transformation functions",
             "links": [
                 {
                     "title": "GitHub",
-                    "url": "a"
+                    "url": "https://github.com/snowStorrm/bolt-engine"
                 }
             ],
             "image": ""
@@ -16,11 +16,11 @@
         {
             "title": "GPS-Enabled Livestock Eartag",
             "subtitle": "GE 1502 Final Project",
-            "description": "Built with Three, Next.js, and love :)",
+            "description": "\tA bluetooth-enabled livestock ear tag prototype with programmable ID data and passive GPS tracking technology. Designed for integrated tracking of herd behaviors and disease spread. I was responsible for speccing electronics, writing hardware-software interfaces for Bluetooth, GPS tracking, and ROM/Flash manipulation, and designing the form-fitting enclosure to secure everything.",
             "links": [
                 {
                     "title": "Onshape",
-                    "url": "b"
+                    "url": "https://cad.onshape.com/documents/8160a0033a073159f06cf55a/w/db497afb0380d437091560fb/e/4148f89704e850861e11ef9b"
                 }
             ],
             "image": ""
@@ -28,27 +28,23 @@
         {
             "title": "CIFAR-10 Image Classifier",
             "subtitle": "EECE 2140 Final Project",
-            "description": "Built with Three, Next.js, and love :)",
+            "description": "\tA PyTorch neural network model based on the VGG16 format. Within 100 generations, it achieved over 84% accuracy on the CIFAR-10 image classification dataset.\n\nIncluded in the GitHub Repo:\n\t- A semi-formal writeup detailing the development \n\t   process\n\t- Model weights for several iterations\n\t- Full, commented development code",
             "links": [
                 {
                     "title": "GitHub",
-                    "url": "c"
+                    "url": "https://github.com/snowStorrm/CIFAR-10-PyTorch"
                 }
             ],
             "image": ""
         },
         {
-            "title": "Bolt Renderer",
-            "subtitle": "WebGL2 TypeScript Renderer",
-            "description": "Built with Three, Next.js, and love :)",
+            "title": "FPGA-Controlled Spider Robot",
+            "subtitle": "EECE 2160 Final Project",
+            "description": "\tDesigned FPGA circuits and C++ code to run a Terasic Spider Robot through a specified, natural walking moveset.",
             "links": [
                 {
                     "title": "GitHub",
-                    "url": "d"
-                },
-                {
-                    "title": "Demo",
-                    "url": "f"
+                    "url": "https://github.com/snowStorrm/eece2160"
                 }
             ],
             "image": ""
@@ -56,7 +52,7 @@
         {
             "title": "This Website",
             "subtitle": "Personal Portfolio",
-            "description": "Built with Three, Next.js, and love :)",
+            "description": "Built by hand with Three, Next.js, and love :)",
             "image": ""
         }
     ]

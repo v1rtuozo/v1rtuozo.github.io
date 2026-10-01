@@ -8,18 +8,10 @@
   --color-deep-blue-600: #323a4f;
   --color-deep-blue-500: #374058;
   --color-deep-blue-400: #4b5369;
+}
 
-  @keyframes pageScroll {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-
-  --animate-scroll: pageScroll 1ms ease-in-out;
+:root {
+  scrollbar-width: thin;
 }
 
 html {
@@ -31,12 +23,17 @@ html {
 body {
   margin: 0;
   padding: 0;
+  overflow-x: clip;
 }
 
 canvas {
   margin: 0;
   padding: 0;
   display: block;
+}
+
+.arr-down {
+  animation: 1s ease-in-out 0.5s infinite alternate arrDown
 }
 
 .mono-box {
@@ -129,6 +126,7 @@ canvas {
   height: var(--item-height);
   min-height: var(--item-height);
 }
+
 html.list-snapping {
   scroll-snap-type: y mandatory;
 }
@@ -139,7 +137,7 @@ html.list-snapping {
   transform-origin: left center;
   animation: listItemCarousel linear both;
   animation-timeline: scroll(root block);
-  animation-range: calc(100vh + (var(--item-index) - 1) * var(--item-height)) calc(100vh + (var(--item-index) + 1) * var(--item-height));
+  animation-range: calc(var(--list-start) + (var(--item-index) - 1) * var(--item-height)) calc(var(--list-start) + (var(--item-index) + 1) * var(--item-height));
 }
 
 [data-list-first] {
@@ -148,6 +146,15 @@ html.list-snapping {
 
 [data-list-last] {
   animation-name: lastListItemCarousel;
+}
+
+@keyframes arrDown {
+  0% {
+    transform: translateY(5pt);
+  }
+  100% {
+    transform: translateY(-5pt);
+  }
 }
 
 @keyframes listItemCarousel {
