@@ -1,8 +1,6 @@
-import type { NextConfig } from "next";
-
 console.log("LOADING NEXT CONFIG");
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   reactStrictMode: true,
   turbopack: {
     rules: {
