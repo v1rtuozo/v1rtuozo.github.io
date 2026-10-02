@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import frag from './shader/bgFrag.glsl?raw';
+import frag from './shader/bgFrag.glsl';
 import { Timestamp } from 'next/dist/server/lib/cache-handlers/types';
 
 export default function Scene() {

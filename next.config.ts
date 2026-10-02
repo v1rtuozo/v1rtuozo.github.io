@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+console.log("LOADING NEXT CONFIG");
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   turbopack: {
