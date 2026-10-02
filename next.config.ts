@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   turbopack: {
     rules: {
-      '*.{glsl, vs, fs, vert, frag}': {
+      '*.glsl': {
         loaders: ['raw-loader'],
         as: '*.js',
       },
