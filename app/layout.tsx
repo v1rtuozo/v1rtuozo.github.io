@@ -70,7 +70,7 @@ export default function RootLayout({
                 </h1>
               </MonoHeader>
               <MonoLink link={"mailto:ryan.zucker@icloud.com"} img={mailto} size={40} />
-              <MonoLink link={"https://github.com/snowstorrm"} img={github} size={40} />
+              <MonoLink link={"https://github.com/v1rtuozo"} img={github} size={40} />
               <MonoLink link={"https://linkedin.com/in/ryan-zucker-a7a9662a1/"} img={linkedin} size={40} />
             </div>
             <div className={`${BODY.className} text-bone-white-500 mt-[5pt]`}>

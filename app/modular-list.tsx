@@ -131,7 +131,7 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
                 <div>
                     <h2 className={`${SUBTITLE.className} text-bone-white-500`}>{item.title}</h2>
                     {subtitle}
-                    <p className={`${BODY.className} text-bone-white-500 whitespace-pre-wrap text-justify w-[475px]`}>{item.description}</p>
+                    <p className={`${BODY.className} text-[11.11pt] text-bone-white-500 whitespace-pre-wrap text-justify w-[485px]`}>{item.description}</p>
                     {img}
                 </div>
             </div>

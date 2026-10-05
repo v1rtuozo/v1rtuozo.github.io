@@ -4,7 +4,7 @@
         {
             "title": "Bolt Renderer",
             "subtitle": "TypeSript WebGL 2 Renderer",
-            "description": "\tBuilding an object-oriented WebGL 2 renderer using TypeScript, from scratch, with no external packages. I'm currently working on some refactors to the old content, since I've learned a lot more about good code standards and the rendering pipeline overall.\n\nCurrent Support:\n\t- Canvas creation and rendering context setup\n\t- Custom vertex and fragment shader definition\n\t- Object-oriented color and vector support, with \n\t   transformation functions",
+            "description": "\tBuilding an object-oriented WebGL 2 renderer using TypeScript, from scratch, with no external packages. I'm currently working on refactors to the old content, since I've learned a lot more about good code standards and the rendering pipeline overall. I am also bringing in a friend to help on the project so we can accelerate development and learn about GPU rendering together.\n\nCurrent Support:\n\t- Canvas creation and rendering context setup\n\t- Custom vertex and fragment shader definition\n\t- Object-oriented color and vector support, with\n\t  transformation functions",
             "links": [
                 {
                     "title": "GitHub",
@@ -15,8 +15,8 @@
         },
         {
             "title": "GPS-Enabled Livestock Eartag",
-            "subtitle": "GE 1502 Final Project",
-            "description": "\tA bluetooth-enabled livestock ear tag prototype with programmable ID data and passive GPS tracking technology. Designed for integrated tracking of herd behaviors and disease spread. I was responsible for speccing electronics, writing hardware-software interfaces for Bluetooth, GPS tracking, and ROM/Flash manipulation, and designing the form-fitting enclosure to secure everything.",
+            "subtitle": "Cornerstone of Engineering Final Project",
+            "description": "\tA bluetooth-enabled livestock ear tag prototype with programmable ID data and passive GPS tracking technology. Designed for integrated tracking of herd behaviors and disease spread. I was responsible for speccing electronics, writing hardware-software interfaces for Bluetooth, GPS tracking, and ROM/Flash manipulation, and designing the form-fitting enclosure to secure everything. Others were responsible for high-level design and software development, as well as market research and ideation.",
             "links": [
                 {
                     "title": "Onshape",
@@ -27,7 +27,7 @@
         },
         {
             "title": "CIFAR-10 Image Classifier",
-            "subtitle": "EECE 2140 Final Project",
+            "subtitle": "Computing Fundamentals Final Project",
             "description": "\tA PyTorch neural network model based on the VGG16 format. Within 100 generations, it achieved over 84% accuracy on the CIFAR-10 image classification dataset.\n\nIncluded in the GitHub Repo:\n\t- A semi-formal writeup detailing the development \n\t   process\n\t- Model weights for several iterations\n\t- Full, commented development code",
             "links": [
                 {
@@ -39,8 +39,8 @@
         },
         {
             "title": "FPGA-Controlled Spider Robot",
-            "subtitle": "EECE 2160 Final Project",
-            "description": "\tDesigned FPGA circuits and C++ code to run a Terasic Spider Robot through a specified, natural walking moveset.",
+            "subtitle": "Embedded Design Final Project",
+            "description": "\tOver the course of the semester, we developed a strong understanding of digital logic design for embedded applications. Our main focus was on PWM signaling for sensor and servo motor control, but we also designed logic circuitry for control of stepper motors and 7-segment displays. The course culminated in designing FPGA circuits and C++ code to run a Terasic Spider Robot through a specified, natural walking moveset.",
             "links": [
                 {
                     "title": "GitHub",

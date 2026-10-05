@@ -4,21 +4,21 @@
         {
             "title": "Software Engineering Co-op",
             "subtitle": "Jan. 2026 - Jun. 2026 @ Captura",
-            "description": "\tMy first Northeastern Co-op experience. My supervisor, Chris, gave me three major tasks across my six months there:\n\t- Migration of our metrics and models from Tableau to \n\t  Metabase\n\t\t- Using SQL and Databricks\n\t- Researching improvements to anti-theft technology\n\t\t- I developed a dynamic watermark with up to 30% \n\t\t  increased resilience against AI removal tools\n\t\t- I also created a fully-integrated development and \n\t\t  previewing pipeline for documenting and testing \n\t\t  progress\n\t- Made major contributions to the June 2026 Workflow \n\t  and Shop releases, specifically in the product designer\n\t\t- Grid lines and margin alignment tools\n\t\t- Gradient support for backgrounds\n\t\t- In-editor previewing of designs with populated data \n\t\t  (names, images, barcodes, etc.)",
+            "description": "\tMy first Northeastern Co-op experience. Captura is the industry leader in high volume photography, providing unified solutions for everything from jobs and images to sales, editing, school coordination, and fulfillment, processing over $1 billion in transactions across its ecosystem. My supervisor, Chris, gave me three major tasks across my six months there:\n\n\tFirst, I migrated metrics and models from Tableau to Metabase using SQL and Databricks, supporting the company's SOC2 compliance efforts while reducing analytics-related operating costs by 30%.\n\n\tNext, I researched improvements to anti-theft technology, developing a dynamic watermark with up to 40% increased resilience against AI-based removal tools compared to commercial alternatives tested.\n\n\tTo finish my time, I got to work in a SCRUM Agile engineering pod (where I delivered at a rate comparable to full-time developers!). I also made major contributions to the June 2026 Workflow and Shop releases including alignment tools, gradient backgrounds, and in-editor previewing of populated data such as names, images, or barcodes.",
             "links": [],
             "image": ""
         },
         {
             "title": "IT Shadow Week",
             "subtitle": "May. 2024 @ Monotype",
-            "description": "\tMy senior shadow week. I shadowed a few IT people at Monotype, mostly watching and learning how they conducted day-to-day activities. During that week, however, I:\n\t- Prepared 20+ laptops for secure data disposal\n\t- Fully organized in-office tape drives, labelling outdated ones \n\t  for archival\n\t- Updated employee technology records to reflect the \n\t  company-owned devices each individual had",
+            "description": "\tMy senior shadow week. I shadowed a few IT people at Monotype, mostly watching and learning how they conducted day-to-day activities. During that week, however, I also helped with a good amount of housekeeping:\n\t- Prepared 20+ laptops for secure data disposal\n\t- Fully organized in-office tape drives, labelling outdated ones \n\t  for archival\n\t- Updated employee technology records to reflect the \n\t  company-owned devices each individual had",
             "links": [],
             "image": ""
         },
         {
             "title": "Teaching Assistant",
             "subtitle": "Sep. 2023 - May. 2024 @ New England Academy",
-            "description": "\tThis was one of my National Honor Society contributions to my high school. I observed two classes: Chemistry and Pre-Calculus, and was mainly there to help answer questions about classwork and to provide explanations of concepts if necessary. Both teachers I TA'd for told me they were impressed by my ability to explain things in approachable terms. In chemistry, some students even told me that my presence was one of the main reasons they passed the class.",
+            "description": "\tThis was one of my National Honor Society contributions to my high school. I observed two classes: Chemistry and Pre-Calculus, and was mainly there to help answer questions about classwork and to provide explanations of concepts if necessary, but I was occasionally tasked with assisting in the proctoring of tests and quizzes.\n\n\tBoth teachers I TA'd for told me they were impressed by my ability to explain things in approachable terms. In chemistry, some students even told me that my presence was one of the main reasons they passed the class.",
             "links": [],
             "image": ""
         }
