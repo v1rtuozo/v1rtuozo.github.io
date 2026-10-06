@@ -127,11 +127,11 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
         const subtitle = item.subtitle ? <h3 className={`${SUBTITLE.className} text-cornflower-blue-500`}>{item.subtitle}</h3> : null;
         const img = item.image ? <Image src={item.image} alt={item.title} width={320} height={180} /> : null;
         listJSX.push((
-            <div key={`${boxTitle}-item-${i}`} id={`${boxTitle}-${i}`} data-list-item={true} data-list-first={i == 0 || undefined} data-list-last={i == items.length - 1 || undefined} className="carousel-item absolute pt-[15pt] w-[calc(100%-56pt)]" style={{ '--item-index': i } as CSSProperties}>
+            <div key={`${boxTitle}-item-${i}`} id={`${boxTitle}-${i}`} data-list-item={true} data-list-first={i == 0 || undefined} data-list-last={i == items.length - 1 || undefined} className="carousel-item absolute pt-[0pt] w-[calc(100%-56pt)]" style={{ '--item-index': i } as CSSProperties}>
                 <div>
                     <h2 className={`${SUBTITLE.className} text-bone-white-500`}>{item.title}</h2>
                     {subtitle}
-                    <p className={`${BODY.className} text-[11.11pt] text-bone-white-500 whitespace-pre-wrap text-justify w-[485px]`}>{item.description}</p>
+                    <p className={`${BODY.className} text-[10pt] text-bone-white-500 whitespace-pre-wrap text-justify w-[485px]`}>{item.description}</p>
                     {img}
                 </div>
             </div>
@@ -153,15 +153,15 @@ export default function ModularList(props: { data: ModularListData; boxExtraStyl
     if (boxTitle != undefined) {
         title = (
         <MonoHeader boxStyle={`z-[2]`}>
-            <h1 id={`${boxTitle}-title`} className={`${TITLE.className} text-cornflower-blue-500 w-fit`}>{boxTitle}</h1>
+            <h1 id={`${listId}-title`} className={`${TITLE.className} text-cornflower-blue-500 w-fit scroll-mt-[90pt] lg:scroll-mt-[105pt]`}>{boxTitle}</h1>
         </MonoHeader>
         );
     }
 
     return (
     <>
-        <div ref={listContainerRef} id={boxTitle} style={{ '--item-height': `${ITEM_HEIGHT}vh`, '--list-start': '0px', height: `calc(100vh + ${items.length * ITEM_HEIGHT}vh)` } as CSSProperties} className="relative overflow-visible w-full max-w-full">
-            <MonoBox width={'w-[calc(67%-30pt)]'} height={'h-[calc(100vh-30pt)]'} boxStyle={`sticky top-[15pt] ${boxAlignClass} z-[1] min-w-[575px] overflow-visible ${boxExtraStyle}`} boxInnerStyle="overflow-hidden">
+        <div ref={listContainerRef} id={listId} style={{ '--item-height': `${ITEM_HEIGHT}vh`, '--list-start': '0px', height: `calc(100vh + ${items.length * ITEM_HEIGHT}vh)` } as CSSProperties} className="relative overflow-visible w-full max-w-full scroll-mt-[90pt] lg:scroll-mt-[105pt]">
+            <MonoBox width={'w-[calc(67%-30pt)]'} height={'h-[calc(100vh-30pt)]'} boxStyle={`sticky top-[15pt] lg:top-[105pt] lg:h-[calc(100svh-120pt)] ${boxAlignClass} z-[1] min-w-[575px] overflow-visible ${boxExtraStyle}`} boxInnerStyle="overflow-hidden">
                 <div className={`w-full h-full`}>
                     <div className="flex items-center gap-[7.5pt] flex-wrap">   
                         {title}

@@ -18,12 +18,39 @@ html {
   margin: 0;
   padding: 0;
   scroll-snap-type: none;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: clip;
+}
+
+.navbar-scroll-reveal {
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 240ms ease-out, transform 240ms ease-out, visibility 0s linear 240ms;
+}
+
+.navbar-scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .navbar-scroll-reveal {
+    transition: none;
+  }
 }
 
 canvas {

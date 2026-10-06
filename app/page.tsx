@@ -6,7 +6,7 @@ import arrowDown from './images/arrow-down.svg';
 export default function Page() {
   return (
     <>
-      <div className="h-[100svh] relative grid place-items-center">
+      <div id="top" className="h-[100svh] relative grid place-items-center">
         <div className= "text-bone-white-500 h-fit">
           <h2 className={`${SUBTITLE.className} text-3xl tracking-tighter`}>hello, i&apos;m</h2>
           <div></div>
